@@ -3,12 +3,14 @@ package com.restaurant.daos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.restaurant.util.*;
+//import com.restaurant.util.*;
 
 import com.restaurant.entity.Employee;
+//import com.restaurant.entity.Users;
 import com.restaurant.ifaces.DAO;
 import com.restaurant.util.SqlConnection;
 
@@ -111,18 +113,37 @@ public class EmployeeDao implements DAO<Employee> {
 		return cust;
 	}
 	@Override
-	public int update(int key) {
+	public Boolean update(Employee e){
+		String sql = "update users set password = ?, role = ?  where empId = ?";
 		
-		return 0;
+		try {
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, e.getName());
+			pstmt.setLong(2, e.getEmpMobile());
+			pstmt.setInt(3, e.getEmpId());
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException exc) {
+			System.out.println(exc.getMessage());
+			return false;
+		}
+		
+		
+		return true;
 	}
 	@Override
 	public int delete(int key) {
 		String sql="delete from employee where empId=?";
 		PreparedStatement pstmt;
 		try {
-			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, key);
+			return pstmt.executeUpdate();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return 0;
 	}

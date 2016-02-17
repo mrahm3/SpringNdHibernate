@@ -7,16 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.restaurant.entity.Item;
+
+import com.restaurant.entity.DiningTable;
 import com.restaurant.ifaces.DAO;
 import com.restaurant.util.SqlConnection;
+import com.restaurant.util.Utility;
 
-public class ItemDao implements DAO<Item> {
+public class DiningTableDao implements DAO<DiningTable> {
 private Connection con;
 	
 	
 	
-	public ItemDao() {
+	public DiningTableDao() {
 		super();
 		con = SqlConnection.getOracleConnection();
 	}
@@ -24,16 +26,17 @@ private Connection con;
 	
 	
 	@Override
-	public int add(Item e) {
-		String sql = "insert into Item values (?,?,?)";
+	public int add(DiningTable ord) {
+		String sql = "insert into DiningTable values (?,?)";
 		
 		try {
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, e.getItemCode());
-			pstmt.setString(2, e.getName());
-			pstmt.setString(3, e.getItemType());
+			pstmt.setInt(1, ord.getTableNo());
+			pstmt.setInt(2, ord.getEmpId());
+		
+		//	pstmt.setBoolean(5, Utility.booleanToString(e.getStatus()));
 			
 			return pstmt.executeUpdate();
 			
@@ -46,60 +49,65 @@ private Connection con;
 	}
 
 	@Override
-	public Item find(int itemCode) {
-		String sql = "select * from User where itemCode = ?";
+	public DiningTable find(int tableNo) {
+		String sql = "select * from DiningTable where tableNo = ?";
 		PreparedStatement pstmt;
-		Item emp = null;
+		DiningTable orde = null;
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, itemCode);
+			pstmt.setInt(1, tableNo);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
 				
-				emp = getItem(rs);
+				orde = getItem(rs);
 			}
 			
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 				
-		return emp;
+		return orde;
 		
 	}
 
 	@Override
-	public List<Item> findAll() {
-		String sql = "select * from Item";
+	public List<DiningTable> findAll() {
+		String sql = "select * from DiningTable";
 		PreparedStatement pstmt;
-		Item emp = null;
-		List<Item> empList = new ArrayList<Item>();
+		DiningTable orde= null;
+		List<DiningTable> ordList = new ArrayList<DiningTable>();
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
-				emp = getItem(rs);
-				empList.add(emp);
+				orde = getItem(rs);
+				ordList.add(orde);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return empList;
+		return ordList;
 	}
-
-	private Item getItem(ResultSet rs) {
-		
-		return null;
+	private DiningTable getItem(ResultSet rs)
+	{
+		DiningTable o =null;
+		try {
+			  o=new DiningTable(rs.getInt("tableNo"),rs.getInt("empId")	);
+			 
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		return o;
 	}
-
 
 
 	@Override
 	public int delete(int key) {
-		String sql = "delete from item where itemCode = ?";
+		String sql = "delete from DiningTable where tableNo = ?";
 		PreparedStatement pstmt;
 		
 		try {
@@ -115,16 +123,17 @@ private Connection con;
 	
 	
 	@Override
-	public Boolean update(Item e){
-		String sql = "update Item set name = ?, type = ?," + "rate=?,inStock=?," + " isveg=?  where itemCode = ?";
+	public Boolean update(DiningTable e){
+		String sql = "update DiningTable set billNo = ?, itemCode = ?," + "quantity=?,status=?," + " where orderId = ?";
 		
 		try {
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, e.getItemCode());
-			pstmt.setString(2, e.getName());
-			pstmt.setString(3, e.getItemType());
+			pstmt.setInt(1, e.getTableNo());
+			pstmt.setInt(2, e.getEmpId());
+			
+			//pstmt.setBoolean(5, Utility.booleanToString(e.getStatus()));
 			
 			
 			pstmt.executeUpdate();
