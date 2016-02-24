@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>My First Example    </title>
+<link href="css/Styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<header>
+<div id="header">
+  <div id="hdLeft"> </div>
+  <img alt="Desert" src="Images/Desert.jpg"> <h1> Restaurant </h1>
+ <!--    <img alt="Koala" src="Images/Koala.jpg">   -->
+   <div id="hdRight">
+ 
+   </div>
+  
+   </div>
+   </header>
+
+ <nav>
+ <ul>
+   <li> <a href="Home.html"><span style="padding-left: 15px">Home  </span> </a></li>
+   <li> <a href="Book.html"> Book </a></li>
+   <li> <a href="Order.html"> Order </a></li>
+   <li> <a href="Reviews.html"> Reviews  </a> </li>
+   <li> <a href="ContactUs.html"> Contact Us</a></li>
+   
+  
+   
+   
+  </ul> 
+  </nav>
+  <section>
+  <form>
+  <table>
+  <tr>
+       <td>  UserName </td>
+        <td> <input type="text" name="userName" id="userName" required="required"> </td> 
+   </tr>   
+ 
+  <tr>
+       <td>  Password </td>
+        <td> <input type="password" name="passWord" required="required" placeholder="Enter password" id="password" > </td> 
+   </tr> 
+   
+    <tr>
+       <td>  Telephone </td>
+        <td> <input type="tel" name="tel" required="required" pattern="\d{3}-\d{4}=\d{3}" placeholder="999-9999-999"> </td> 
+   </tr> 
+   
+    <tr>
+       <td>  Email </td>
+        <td> <input type="email" name="email" required="required" multiple="multiple"> </td> 
+   </tr> 
+   
+    <tr>
+       <td>  Role </td>
+        <td> 
+        <select name="Role">
+        <option value="ADMIN" >ADMIN</option>
+        <option value="Chef" >CHEF </option>
+        <option value="Manager" >MANAGER  </option>
+        </select></td> 
+   </tr> 
+   
+   <tr> 
+      <td colspan="2"> <input type="Submit" name="submit" value="Login">  </td>
+   </tr>
+    
+  </table>
+  
+  </form>
+  </section>
+  
+  <script type="text/javascript">
+  var element=document.getElementById("userName");
+  element.addEventListener("copy",function(){
+	  event.preventDefault();
+	  alert("copy not allowed");
+  });
+  
+  document.addEventListener('paste', function(event)
+		  {
+	  event.preventDefault();
+	  alert('paste not allowed');
+		  });
+  
+  document.addEventListener('contextmenu', function(event)
+		  {
+	  event.preventDefault();
+	  alert('Right Click not allowed');
+		  });
+  
+  
+  </script>
+  
+</body>
+</html>

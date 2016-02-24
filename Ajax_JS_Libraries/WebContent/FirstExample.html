@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Execution Order</title>
+<script type="text/javascript" src="jslibs/jquery-1.12.1.js"></script>
+<script type="text/javascript">
+/*  window.onload=function(){
+alert("ON Load-1 Called");
+}
+window.onload=function(){
+	alert("ON Load-2 Called");
+	}
+
+$(function(){
+	alert("Ready Called");
+});
+$(function(){
+	alert("Ready-2  Called");
+}); */
+
+$(function(){
+	$("h1").css("color","blue");
+	$("#detail").css("font-size","1.3em");
+	$("ul>li").css("color","red");
+	
+	$("img").on('click',function(){
+		alert("Image");
+	});
+});
+</script>
+</head>
+<body>
+
+<h1>jQuery Examples</h1>
+<h3 id="detail">Ajax Calls</h3>
+<ul>
+ <li>UML </li>
+ <li>OOAD </li>
+ <li>RDBMS</li>
+ <li>Java</li>
+ <li>ANT &amp;log4j</li>
+ <li>Design Patterns</li>
+ </ul>
+ <img alt="No preview avail." src="images/Desert.jpg" height=500 width=500>
+</body>
+</html>
