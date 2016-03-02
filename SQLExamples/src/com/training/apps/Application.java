@@ -18,7 +18,7 @@ public class Application {
  // System.out.println(rowAdded + ":= Row Added");
   ArrayList<Customer> cust1=(ArrayList<Customer>)dao.findAll();
   for(Customer cust: cust1)
-	  System.out.println(cust.showCustomer());
+	  System.out.println(cust.getCustomerId());
  // Customer foundCustomer=dao.find(103);
 //  System.out.println(foundCustomer.showCustomer());
 	}

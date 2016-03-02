@@ -1,7 +1,7 @@
 package com.training.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
+
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -11,8 +11,9 @@ public class SqlConnection {
     	try
     	{
     		Properties prop=new Properties();
-    		FileInputStream inStream= new FileInputStream(new File("DbConnection.properties"));
-    				prop.load(inStream);
+    		//FileInputStream inStream= new FileInputStream(new File("DbConnection.properties"));
+    		InputStream inStream= Thread.currentThread().getContextClassLoader().getResourceAsStream("DbConnection.properties");	
+    		prop.load(inStream);
     				Class.forName(prop.getProperty("db.className"));
     				con=DriverManager.getConnection(prop.getProperty("db.url"),
     						                        prop.getProperty("db.userName"),
@@ -21,6 +22,7 @@ public class SqlConnection {
     	}catch(Exception e){
     		e.printStackTrace();
     	}
+    	System.out.println(con);
     	return con;
     }
 }
