@@ -47,6 +47,8 @@ public void setHandPhone(long handPhone) {
 	this.handPhone = handPhone;
 }
 
-  
+  public String getInfo(){
+	  return "Message from bean";
+  }
   
 }

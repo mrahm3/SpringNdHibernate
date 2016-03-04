@@ -14,9 +14,13 @@
 <name> userName</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
-</attribute><attribute>
+</attribute>
+</tag>
 
-
+<tag>
+<name>forEach</name>
+    <tag-class>com.training.tags.ForEachTag</tag-class>
+<attribute>
 <name> list</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
