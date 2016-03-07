@@ -21,8 +21,7 @@ public class EmployeeDao implements DAO<Employee> {
 	public EmployeeDao() {
 		super();
 		con=SqlConnection.getOracleConnection();
-	}
-	
+	}	
 	@Override
 	public int add(Employee e) {
 	
@@ -114,7 +113,7 @@ public class EmployeeDao implements DAO<Employee> {
 	}
 	@Override
 	public Boolean update(Employee e){
-		String sql = "update users set password = ?, role = ?  where empId = ?";
+		String sql = "update employee set password = ?, role = ?  where empId = ?";
 		
 		try {
 			

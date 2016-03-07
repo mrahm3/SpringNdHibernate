@@ -9,43 +9,46 @@
 <link href="css/Style.css" type="text/css" rel="stylesheet">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
- <hr>
+  
 </head>
 <body>
-
-<a href="Home.jsp?locale=fr"><img alt="French"	src="images/french.jpg" height=10 width=10 id="fr"></a> 
+	<a href="Home.jsp?locale=fr"><img alt="French"	src="images/french.jpg" id="fr"></a> 
 	<a href="Home.jsp?locale=en"><img src="images/india.jpg" height=10 width=10 id="in"></a>
-	<a href="Home.jsp?locale=ge"><img alt="German"	src="images/german.jpg" height=10 width=10 id="fr"></a>	
-		
+<hr>
+<c:import url="Header.jsp"> </c:import>	
+<br>
+ <nav>
+<div id="menu">
+<a href=Doctor.jsp>Doctor</a>	
+<a href=Patient.jsp>Patient</a>
+<a href=Test.jsp>Test</a>
+<a href=Help.jsp>Help</a>
+</div>
+ </nav>
+
 	<fmt:setLocale value="${param['locale'] }" />
 	
 	<fmt:setBundle basename="MessageResources" var="msg" />
 
-<h1><label>
-<fmt:message key="forms.label.title" bundle="${msg}"/></label></h1>
-
 <hr>
-<%-- <c:import url="Header.jsp"> </c:import>
- --%>
- 
 
-<form action="">
+<form action="validate">
 <table>
 <tr>
 <td><label>
 <fmt:message key="forms.label.role" bundle="${msg}"/></label></td>
  <td>  <select name="role" >
-   <option value="Admin">Administrator</option>
-   <option value="Man">Manager</option>
-   <option value="Lt">Lab Technician</option>
-   <option value="Operator">Operator</option>
+   <option value=admin>Administrator</option>
+   <option value="manager">Manager</option>
+   <option value="labTechnician">Lab Technician</option>
+   <option value="operator">Operator</option>
 
 </select></td>
 <tr>
 <td><label>
 <fmt:message key="forms.label.labCode" bundle="${msg}"/></label> </td> 
-<td><input type="text" name="labCode"></td>
+<td><input type="text" name="code" id="code" list="labcode"><datalist id="labcode">
+</datalist></td>
 </tr>
 
 <tr>
@@ -60,13 +63,35 @@
 </tr>
    
 <tr > <td colspan="2">
-<input type="submit" value="Login"></td>
+<input type="submit" value="Login" name="login" id="login"></td>
 </tr>
 </table>
 </form>
 <hr>
-<h3><a href=""><label>
-<fmt:message key="forms.label.ContactAdministrator" bundle="${msg}"/></label></a>
-</h3>
+<c:import url="Footer.jsp"> </c:import>
 </body>
+
+<script type="text/javascript" >
+var dataList = document.getElementById("labcode");
+var input = document.getElementById("code");
+
+var request = new XMLHttpRequest();
+request.open("GET","Data/DataList.json",true);
+
+request.onreadystatechange = function (response) {
+	
+	if(request.readyState === 4 && request.status === 200){
+		
+		var jSonOptions = JSON.parse(request.responseText);
+		jSonOptions.forEach(function(item){
+			var option = document.createElement("option");
+			option.value = item.code;
+			dataList.appendChild(option);
+		});
+			
+	}
+	
+};
+request.send();
+</script>
 </html>
