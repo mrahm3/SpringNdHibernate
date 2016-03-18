@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Success</title>
 </head>
 <body>
-${command}
-<h1>Request Added</h1>
 
-<a href="showAll">Show</a>
-<form action="cust/check">
-Search By name
-<input type="text" name="name">
-<input type="submit" value="search">
+<h2>Spring Examples</h2>
 
-</form>
-${prevBooking }
+<c:out value="${msg}"/>
 </body>
 </html>

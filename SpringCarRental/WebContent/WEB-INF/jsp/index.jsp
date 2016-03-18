@@ -8,5 +8,6 @@
 </head>
 <body>
 <a href="CarRequest">ADD</a>
+<a href="showAll">Show Requests</a>
 </body>
 </html>

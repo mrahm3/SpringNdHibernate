@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2016 10:45:08 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <joined-subclass name="com.training.entity.InPatient" extends="com.training.entity.Patient" table="INPATIENT" lazy="false">
+        <key>
+            <column name="PATIENTNAME" />
+        </key>
+        <property name="wardNumber" type="java.lang.String">
+            <column name="WARDNUMBER" />
+        </property>
+        <property name="dateOfAdmission" type="java.sql.Timestamp">
+            <column name="DATEOFADMISSION" />
+        </property>
+    </joined-subclass>
+</hibernate-mapping>

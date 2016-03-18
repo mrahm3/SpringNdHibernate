@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="custBean1" class="com.training.domains.Customer" scope="prototype">
+<property name="customerId" value="1010"></property>
+<property name="customerName" value="Ramesh"></property>
+<property name="phoneNumber" value="9891818660"></property>
+
+
+</bean>
+
+</beans>

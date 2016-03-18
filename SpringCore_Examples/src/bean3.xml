@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="cust" class="com.training.domains.Customer">
+<property name="customerId" value="1010"></property>
+<property name="customerName" value="Ramesh"></property>
+<property name="phoneNumber" value="9891818660"></property>
+<property name="addr" ref="addr"></property>
+
+</bean>
+
+<bean id="inv" class="com.training.domains.Invoice" autowire="byType">
+<property name="invoiceNumber" value="101"></property>
+</bean>
+
+<bean id="addr" class="com.training.domains.Address">
+<constructor-arg name="addrLine1" value="Gandhi Street"></constructor-arg>
+<constructor-arg name="addrLine2" value="Nehru Nagar"></constructor-arg>
+<constructor-arg name="city" value="Delhi"></constructor-arg>
+<constructor-arg name="pinCode" value="110025"></constructor-arg>
+</bean>
+
+</beans>

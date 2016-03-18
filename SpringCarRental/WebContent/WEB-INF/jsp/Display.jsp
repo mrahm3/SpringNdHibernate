@@ -4,19 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Display</title>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
-${command}
-<h1>Request Added</h1>
+<h2>Address</h2>
 
-<a href="showAll">Show</a>
-<form action="cust/check">
-Search By name
-<input type="text" name="name">
-<input type="submit" value="search">
-
-</form>
-${prevBooking }
+<c:out value="${data}"></c:out>
 </body>
 </html>

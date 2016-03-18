@@ -5,18 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
-${command}
-<h1>Request Added</h1>
+<c:out value="${url}"></c:out><br>
+<c:out value="${msg}"></c:out><br>
+<hr>
 
-<a href="showAll">Show</a>
-<form action="cust/check">
-Search By name
-<input type="text" name="name">
-<input type="submit" value="search">
-
-</form>
-${prevBooking }
+Stacktrace:
+<c:forEach items="${exception.stackTrace }" var="item">
+<li> <c:out value="${item }"></c:out></li>
+</c:forEach>
 </body>
 </html>
